@@ -50,7 +50,7 @@ public class XMLBeanBuilder implements Provider<Document> {
         if (beanElement == null) {
             beanElement = addNewBean(id);
         }
-        beanElement.setAttribute("type", type.getCanonicalName());
+        beanElement.setAttribute("class", type.getCanonicalName());
         return new XMLBeanPropertyBuilder(document, beanElement);
     }
     

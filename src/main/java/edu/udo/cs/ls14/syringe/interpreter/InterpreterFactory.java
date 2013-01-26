@@ -6,6 +6,7 @@ import edu.udo.cs.ls14.syringe.term.Application;
 import edu.udo.cs.ls14.syringe.term.Term;
 import edu.udo.cs.ls14.syringe.term.Variable;
 import java.util.Map;
+import javax.inject.Provider;
 
 /**
  *
@@ -18,20 +19,20 @@ public class InterpreterFactory {
         this.context = context;
     }
     
-    <RR> Interpreter<? extends Variable, RR> interpreter(Variable variable) {
-        return new VariableInterpreter(this, context, variable);
+    <RR> Interpreter<? extends Variable, RR> interpreter(Variable variable, Class<RR> resultType) {
+        return new VariableInterpreter(this, context, variable, resultType);
     }
     
-    <RR> Interpreter<? extends Application, RR> interpreter(Application application) {
-        return new ApplicationInterpreter<Application, RR>(this, context, application);
+    <RR> Interpreter<? extends Application, RR> interpreter(Application application, Class<RR> resultType) {
+        return new ApplicationInterpreter<Application, RR>(this, context, application, resultType);
     }
     
-    public <RR> Interpreter<? extends Term, RR> interpreter(Term term) {
+    public <RR> Interpreter<? extends Term, RR> interpreter(Term term, Class<RR> resultType) {
         if (term instanceof Variable) {
-            return interpreter((Variable)term);
+            return interpreter((Variable)term, resultType);
         } else if (term instanceof Application) {
-            return interpreter((Application)term);
+            return interpreter((Application)term, resultType);
         }
-        throw new IllegalArgumentException(String.format("No builder for terms of type %s present", term.getClass().toString()));
+        throw new IllegalArgumentException(String.format("No builder for terms of type %s present", term.getClass().getSimpleName()));
     }
 }

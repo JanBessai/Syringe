@@ -10,6 +10,7 @@ import edu.udo.cs.ls14.syringe.term.util.VariableSupply;
 /**
  *
  * @author Jan
+ * @apiviz.uses edu.udo.cs.ls14.syringe.term.Abstraction
  */
 public class AbstractionBuilder<T extends Abstraction> extends TermBuilder<T> {
     

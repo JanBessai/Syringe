@@ -9,6 +9,7 @@ import edu.udo.cs.ls14.syringe.term.util.VariableSupply;
 /**
  *
  * @author Jan
+ * @apiviz.uses edu.udo.cs.ls14.syringe.term.Variable
  */
 public class VariableBuilder<T extends Variable> extends TermBuilder<T> {
 

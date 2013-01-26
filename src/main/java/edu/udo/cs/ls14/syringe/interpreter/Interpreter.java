@@ -14,10 +14,12 @@ public abstract class Interpreter<T extends Term, R> implements Provider<R> {
     protected final InterpreterFactory factory;
     protected final Map<String, Object> context;
     protected final T term;
+    protected final Class<R> resultType;
     
-    Interpreter(InterpreterFactory factory, Map<String, Object> context, T term) {
+    Interpreter(InterpreterFactory factory, Map<String, Object> context, T term, Class<R> resultType) {
         this.factory = factory;
         this.context = context;
         this.term = term;
+        this.resultType = resultType;
     }
 }
