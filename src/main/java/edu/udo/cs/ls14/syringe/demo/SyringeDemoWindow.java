@@ -3,6 +3,7 @@
 package edu.udo.cs.ls14.syringe.demo;
 
 import edu.udo.cs.ls14.syringe.demo.components.Button;
+import edu.udo.cs.ls14.syringe.demo.components.Panel;
 import edu.udo.cs.ls14.syringe.interpreter.FreeVariableNotInContextException;
 import edu.udo.cs.ls14.syringe.interpreter.InterpreterFactory;
 import edu.udo.cs.ls14.syringe.interpreter.TypeError;
@@ -121,7 +122,7 @@ public class SyringeDemoWindow extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
@@ -131,13 +132,13 @@ public class SyringeDemoWindow extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -173,10 +174,11 @@ public class SyringeDemoWindow extends javax.swing.JFrame {
                 applicationContext.load(ressource);
                 errorArea.append("XML fragment:\n");
                 errorArea.append(new String(ressource.getByteArray()));
-                Button button = applicationContext.getBean("button", Button.class);
-                jPanel2.add(button);
-                button.setVisible(true);
+                Panel panel = applicationContext.getBean("panel", Panel.class);
+                jPanel2.add(panel);
+                panel.setVisible(true);
                 jPanel2.doLayout();
+                panel.doLayout();
             } catch (FreeVariableNotInContextException freeVarEx) {
                 errorArea.append(String.format("\n%s", freeVarEx.getMessage()));
             } catch (NoSuchBeanDefinitionException beanEx) {

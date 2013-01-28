@@ -5,7 +5,9 @@ package edu.udo.cs.ls14.syringe.demo;
 import edu.udo.cs.ls14.syringe.demo.components.Button;
 import edu.udo.cs.ls14.syringe.demo.components.Ciao;
 import edu.udo.cs.ls14.syringe.demo.components.Hello;
+import edu.udo.cs.ls14.syringe.demo.components.Label;
 import edu.udo.cs.ls14.syringe.demo.components.MessageBox;
+import edu.udo.cs.ls14.syringe.demo.components.Panel;
 import edu.udo.cs.ls14.syringe.interpreter.InterpreterFactory;
 import edu.udo.cs.ls14.syringe.repository.inject.spring.SpringBeanInjectionRepository;
 import edu.udo.cs.ls14.syringe.repository.inject.spring.xml.XMLBeanBuilder;
@@ -101,6 +103,8 @@ public class SyringeDemoConfiguration {
     
     public @Bean SpringBeanInjectionRepository springBeanInjectionRepository() {
         SpringBeanInjectionRepository repository = new SpringBeanInjectionRepository(xmlBeanBuilder(), context());
+        repository.registerBeanConstructor(Panel.class.getConstructors()[0], "panel");
+        repository.registerBeanConstructor(Label.class.getConstructors()[0], "label");
         repository.registerBeanConstructor(Button.class.getConstructors()[0], "button");
         repository.registerBeanConstructor(Hello.class.getConstructors()[0], "hello");
         repository.registerBeanConstructor(Ciao.class.getConstructors()[0], "ciao");
