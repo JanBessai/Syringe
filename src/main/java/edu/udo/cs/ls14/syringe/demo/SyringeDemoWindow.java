@@ -36,8 +36,9 @@ public class SyringeDemoWindow extends javax.swing.JFrame {
     private final TermVisitor visitor;
     private final InterpreterFactory interpreterFactory;
     private final XMLRessourceFactory xmlRessourceFactory;
+    private final Map<String, Object> context;
     private final GenericXmlApplicationContext applicationContext;
-    
+        
     /**
      * Creates new form SyringeDemoWindow
      */
@@ -55,8 +56,12 @@ public class SyringeDemoWindow extends javax.swing.JFrame {
         this.visitor = visitor;
         this.interpreterFactory = interpreterFactory;
         this.xmlRessourceFactory = xmlRessourceFactory;
+        this.context = context;
         this.applicationContext = applicationContext;
         initComponents();
+    }
+    
+    private void showRepository() {
         jList1.setListData(context.values().toArray());
     }
 
@@ -232,7 +237,8 @@ public class SyringeDemoWindow extends javax.swing.JFrame {
                 AnnotationConfigApplicationContext context =
                         new AnnotationConfigApplicationContext(SyringeDemoConfiguration.class);
                 SyringeDemoWindow syringeDemoWindow = context.getBean(SyringeDemoWindow.class);
-                syringeDemoWindow.setVisible(true);
+                syringeDemoWindow.showRepository();
+                syringeDemoWindow.setVisible(true);                
             }
         });
     }
