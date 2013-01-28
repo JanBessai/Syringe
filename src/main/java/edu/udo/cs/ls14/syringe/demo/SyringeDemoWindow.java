@@ -57,11 +57,7 @@ public class SyringeDemoWindow extends javax.swing.JFrame {
         this.xmlRessourceFactory = xmlRessourceFactory;
         this.applicationContext = applicationContext;
         initComponents();
-        DefaultListModel componentModel = new DefaultListModel();
-        for (Object o : context.values()) {
-            componentModel.addElement(o);
-        }
-        jList1.setModel(componentModel);
+        jList1.setListData(context.values().toArray());
     }
 
     /**
