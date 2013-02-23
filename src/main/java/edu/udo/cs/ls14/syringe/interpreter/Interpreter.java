@@ -22,4 +22,6 @@ public abstract class Interpreter<T extends Term, R> implements Provider<R> {
         this.term = term;
         this.resultType = resultType;
     }
+    
+    public abstract R get();
 }
